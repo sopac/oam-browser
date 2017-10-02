@@ -18,9 +18,10 @@ export default class ResultsList extends React.Component {
     return (
       <div>
         <p>
-          OpenAerialMap (OAM) is a set of tools for searching, sharing, and
+          OpenAerialMap PacDID is a set of tools for searching, sharing, and
           using openly licensed satellite and unmanned aerial vehicle (UAV)
-          imagery.
+          imagery for the Pacific Islands. Access global imagery at 
+          <a href="https://openaerialmap.org/"> openaerialmap.org.</a>
         </p>
         <h2>Latest uploads</h2>
       </div>

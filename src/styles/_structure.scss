@@ -17,6 +17,16 @@ $menu-unit: 40px;
   img {
     height: 2rem;
   }
+  small {
+    float: right;
+    padding: 0 0.25rem;
+    background: rgba(31,59,69,.64);
+    color: #fff;
+    font-size: 0.75rem;
+    border-radius:0.25rem;
+    line-height: 1.25rem;
+    margin: 0.45rem 0 0 0.5rem;
+  }
 }
 
 .main-menu {

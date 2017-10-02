@@ -60,6 +60,7 @@ export default createReactClass({
         <div className="main-header-wrapper">
           <a className="main-logo" href="#/" title="Home">
             <img src={logo} alt="OpenAerialMap logo" />
+            <small>PACDID</small>
           </a>
 
           {this.isMap() ? (
