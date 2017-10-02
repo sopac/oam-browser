@@ -7,6 +7,8 @@ const everest =
   "test/fixtures/everest-utm.gtiff?raw=true";
 const everestUriCoords = "#/86.92655592750047,27.98899065877948,16";
 
+console.log(`Failing tests will be retried ${retryCount} times`);
+
 function dropDatabase() {
   const child = spawnSync("mongo", [dbName, "--eval", "db.dropDatabase()"]);
   if (child.stderr.toString() !== "") {
@@ -47,7 +49,7 @@ function logIn() {
 // browser.deleteCookie();
 // browser.localStorage('DELETE');
 function logOut() {
-  browser.keys('Escape');
+  browser.keys("Escape");
   browser.pause(500);
   browser.click("a.menu_dropdown_button");
   if ($("a=Logout").isExisting()) {
@@ -168,13 +170,15 @@ describe("Imagery", function() {
 
   describe("Basic imagery submission", function() {
     it("should submit imagery", () => {
-      const title = Math.random().toString(36).slice(2);
+      const title = Math.random()
+        .toString(36)
+        .slice(2);
       submitImagery(everest, title);
       browser.click("a=View image");
       getImageryResults();
       browser.click(".results-list li:first-child");
       expect("h2=" + title).to.be.there();
-      const src = $(".single-media img").getAttribute("src");
+      const src = $(".result-thumbnail img").getAttribute("src");
       expect(src).to.match(/_thumb/);
       // TODO: In order to test the actual TMS we need to fire up the dynamic tiler locally
       // and use visual regression. Looks like there's already a nice wdio extension for
@@ -182,7 +186,9 @@ describe("Imagery", function() {
     });
 
     it("should submit a local file", () => {
-      const title = Math.random().toString(36).slice(2);
+      const title = Math.random()
+        .toString(36)
+        .slice(2);
       const localPath = `${__dirname}/fixtures/everest-utm.gtiff`;
       logIn();
       browser.url("#/upload");
@@ -195,7 +201,9 @@ describe("Imagery", function() {
     });
 
     it("should list a user's images", () => {
-      const title = Math.random().toString(36).slice(2);
+      const title = Math.random()
+        .toString(36)
+        .slice(2);
       submitImagery(everest, title);
       logOut();
       browser.url(everestUriCoords);

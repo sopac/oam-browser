@@ -23,7 +23,7 @@ fieldset {
   }
 }
 
-.formcontrol, .form__control, input[type=text] {
+.formcontrol, .form__control, input[type=text], textarea {
   display: block;
   width: 100%;
   max-width: 100%;
@@ -94,7 +94,7 @@ fieldset {
     padding: 5px;
   }
   .mdi-icon {
-    stroke: $grey;
+    stroke: none;
     fill: $grey;
   }
 }
@@ -152,4 +152,9 @@ fieldset {
     top: 10px;
     right: 10px
   }
+}
+
+#profile-form input,
+#profile-form textarea {
+  margin-bottom: 1rem;
 }

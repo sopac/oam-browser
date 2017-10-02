@@ -106,7 +106,7 @@ export default createReactClass({
 
     // Custom zoom control.
     var zoomCtrl = new DSZoom({
-      position: "bottomleft",
+      position: "bottomright",
       containerClasses: "zoom-controls",
       zoomInClasses: "button-zoom button-zoom--in",
       zoomOutClasses: "button-zoom button-zoom--out"
@@ -305,7 +305,11 @@ export default createReactClass({
     this.mapGridLayer.clearLayers();
 
     // Recompute grid based on current map view (bounds + zoom).
-    var bounds = this.map.getBounds().toBBoxString().split(",").map(Number);
+    var bounds = this.map
+      .getBounds()
+      .toBBoxString()
+      .split(",")
+      .map(Number);
     var gridData = this.computeGrid(this.map.getZoom(), bounds);
 
     // Stick a 'count' property onto each grid square, based on the number of
