@@ -58,6 +58,8 @@ export default createReactClass({
   requireSelectedItemUpdate: true,
   // Control if the selected square is present or not.
   disableSelectedSquare: false,
+  // Add some debounce when updating the map URI
+  canMoveMap: true,
 
   // Current active base layer.
   baseLayer: null,
@@ -185,9 +187,17 @@ export default createReactClass({
     actions.openModal("feedback");
   },
 
-  // Map event
+  // Update the URI when the map view changes.
+  // The debounce here is not ideal. It is a fix to overcome a side effect where a feedback
+  // loop occurs. It would be better to find the cause of the feedback loop.
   onMapMoveend: function(e) {
-    utils.pushURI(this.props, { map: this.mapViewToString() });
+    if (this.canMoveMap) {
+      utils.pushURI(this.props, { map: this.mapViewToString() });
+      this.canMoveMap = false;
+      setTimeout(() => {
+        this.canMoveMap = true;
+      }, 300);
+    }
   },
 
   // Map event
@@ -471,11 +481,12 @@ export default createReactClass({
         tmsUrl = tmsUrl.replace("{zoom}", "{z}");
 
         this.disableSelectedSquare = true;
-        this.getLayerMaxZoom(item.properties.tms).then(data => {
+        this.getLayerMaxZoom(tmsUrl).then(data => {
           this.map.options.maxZoom = data.layerMaxZoom;
           this.mapOverImageLayer = L.tileLayer(tmsUrl, {
             maxZoom: this.map.options.maxZoom
           });
+          this.map.addLayer(this.mapOverImageLayer);
           this.updateSelectedSquare();
         });
       } else if (previewOptions.type === "thumbnail") {
@@ -487,8 +498,8 @@ export default createReactClass({
           item.properties.thumbnail,
           imageBounds
         );
+        this.map.addLayer(this.mapOverImageLayer);
       }
-      this.mapOverImageLayer && this.map.addLayer(this.mapOverImageLayer);
     }
     this.updateSelectedSquare();
   },
