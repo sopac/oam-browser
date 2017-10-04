@@ -35,9 +35,9 @@ $menu-unit: 40px;
   top: 1em;
   > li {
     display: inline-block;
-    margin-left: 3px;
+    margin-left: 4px;
     a {
-      padding: 8px;
+      // padding: 8px;
     }
   }
 }
@@ -92,7 +92,7 @@ $menu-unit: 40px;
 
 .menu-signin-upload {
   height: $menu-unit;
-  background-color: $green;
+  background-color: $darkBlue;
 }
 
 .menu-profile_pic {
@@ -185,16 +185,10 @@ $menu-unit: 40px;
 }
 
 .leaflet-bottom .leaflet-control.zoom-controls {
-  margin-bottom: 128px;
-}
-
-.leaflet-bottom .leaflet-control.zoom-controls {
-  margin-right: 16px;
-}
-
-.zoom-controls {
   font-size: 25px;
   width: 40px;
+  margin-bottom: 180px;
+  margin-right: 16px;
   button {
     width: 40px;
     height: 40px;

@@ -1,12 +1,12 @@
 .sidebar-content {
   display: flex;
+  min-height: 100vh;
   flex-direction: column;
   width: $sidebar-width;
   box-shadow: $box-shadow-default;
 }
 
 #sidebar-body {
-  flex: 1 0 auto;
   background-color: $grey4;
 }
 
@@ -42,6 +42,16 @@
   }
 }
 
+.sidebar-footer {
+  padding: 16px;
+  background-color: $grey4;
+  border-top: 1px solid $grey2;
+  font-size: .875rem;
+  p {
+    margin: 0;
+  }
+}
+
 .oam-blurb {
   font-size: 1.375rem;
   line-height: 1.3;
@@ -57,10 +67,13 @@
     font-size: 1.125rem;
     margin-bottom: 0;
   }
+  p {
+    margin-top: 0;
+  }
 }
 
 .results-list {
-  padding: 16px;
+  padding: 16px 16px 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -135,7 +148,8 @@
 }
 
 #results-pane {
-  margin-top: 65px;
+  margin-top: 96px;
+  flex: 1;
 }
 
 .single-media {
@@ -211,11 +225,11 @@
     }
   }
   .preview-options {
-    .preview-thumbnail {
+    .preview-tms {
       border-top-left-radius: $global-radius;
       border-bottom-left-radius: $global-radius;
     }
-    .preview-tms {
+    .preview-thumbnail {
       border-top-right-radius: $global-radius;
       border-bottom-right-radius: $global-radius;
     }
@@ -230,6 +244,7 @@
 .single-details {
   background-color: $grey4;
   padding: 0 1rem;
+  margin-bottom: 0;
   line-height: 1.25rem;
   @extend .clearfix;
   dt, dd {
@@ -257,13 +272,51 @@
   }
 }
 
+.single-footer {
+  background-color: $grey4;
+  padding: 16px;
+  border-top: 1px solid $grey2;
+}
+
 .single-pager {
   text-align: center;
-  margin-bottom: 2rem;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  background-color: $grey3;
+  border-radius: $global-radius;
+  overflow: hidden;
+  a, span {
+    padding: 10px;
+  }
+  a {
+    display: block;
+    color: $darkBlue;
+    &:hover {
+      opacity: 1;
+      color: $teal;
+      .mdi-icon {
+        fill: $teal;
+      }
+    }
+    &.previous {
+      padding-right: 20px;
+    }
+    &.next {
+      padding-left: 20px;
+    }
+  }
+  span {
+    position: relative;
+    top: 2px;
+    color: $grey;
+  }
   .mdi-icon {
-    transform: scale(2);
+    transform: scale(1);
     stroke: none;
-    fill: $grey;
+    fill: $darkBlue;
+    position: relative;
+    top: 1px;
   }
 }
 
