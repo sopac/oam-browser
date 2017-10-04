@@ -1,12 +1,10 @@
 const { spawnSync } = require("child_process");
 
-const retryCount = process.env.CI === "true" ? 3 : 0;
+const retryCount = 3;
 const dbName = "oam-api-test";
 const everest =
   "https://github.com/openimagerynetwork/oin-meta-generator/blob/master/" +
   "test/fixtures/everest-utm.gtiff?raw=true";
-
-console.log(`Failing tests will be retried ${retryCount} times`);
 
 function dropDatabase() {
   const child = spawnSync("mongo", [dbName, "--eval", "db.dropDatabase()"]);
@@ -17,7 +15,7 @@ function dropDatabase() {
 }
 
 function waitUntilGone(selector) {
-  // The `true` in the third arg rerverses the test, ie waiting for invisible
+  // The `true` in the third arg reverses the test, ie waiting for invisible
   browser.waitForVisible(selector, 300000, true);
 }
 
@@ -100,6 +98,9 @@ function inputRemoteImageryUri(imageryUri) {
 function getImageryResults() {
   const resultsSelector = ".results-list li";
   finishLoading();
+  // Just give the image a few moments to get into the DB. TODO: we shouldn't
+  // have to wait.
+  browser.pause(1000);
   browser.waitForExist(resultsSelector);
   return $$(resultsSelector);
 }
@@ -175,8 +176,6 @@ describe("Imagery", function() {
         .slice(2);
       submitImagery(everest, title);
       browser.click("a=View image");
-      getImageryResults();
-      browser.click(".results-list li:first-child");
       expect("h2=" + title).to.be.there();
       const src = $(".result-thumbnail img").getAttribute("src");
       expect(src).to.match(/_thumb/);
@@ -208,9 +207,6 @@ describe("Imagery", function() {
       logOut();
       browser.url("#/");
       finishLoading();
-      // Just give the image a few moments to get into the DB. TODO: we shouldn't
-      // have to wait.
-      browser.pause(5000);
       getImageryResults();
       browser.click(".results-list li:first-child");
       browser.click(".user-details a");

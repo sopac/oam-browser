@@ -83,7 +83,7 @@ export default createReactClass({
           {this.state.isUserLoggedIn ? (
             <a
               href="#/upload"
-              className="button-upload"
+              className="button-upload bttn-icon"
               title="Go to OAM Uploader"
             >
               <span>Upload</span>

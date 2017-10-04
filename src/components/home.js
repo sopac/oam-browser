@@ -141,6 +141,15 @@ export default createReactClass({
           ) : (
             "Loading imagery ..."
           )}
+          <footer className="sidebar-footer">
+            <p>
+              Made with{" "}
+              <span role="img" aria-label="love">
+                ❤️
+              </span>{" "}
+              by HOT partners and community.
+            </p>
+          </footer>
         </div>
 
         <MapBoxMap
@@ -153,13 +162,7 @@ export default createReactClass({
           filterParams={this.state.filterParams}
         />
 
-        <MiniMap
-          query={this.props.query}
-          selectedSquare={this.props.params.square}
-          selectedSquareQuadkey={this.state.selectedSquareQuadkey}
-          selectedItemId={this.state.selectedItemId}
-          map={this.state.map}
-        />
+        <MiniMap params={this.props.params} />
       </div>
     );
   },

@@ -57,22 +57,19 @@ export default createReactClass({
 
   getInitialState: function() {
     return {
-      selectedPreview: "thumbnail"
+      selectedPreview: "tms"
     };
   },
 
+  componentDidMount: function() {
+    actions.selectPreview({
+      type: this.state.selectedPreview
+    });
+  },
+
   onPreviewSelect: function(what) {
-    let selected = what.type;
-    if (what.index !== undefined) {
-      selected += `-${what.index}`;
-      // Clicking again in a custom tms will de-select it, defaulting to none.
-      if (selected === this.state.selectedPreview) {
-        what = { type: "none" };
-        selected = "none";
-      }
-    }
     actions.selectPreview(what);
-    this.setState({ selectedPreview: selected });
+    this.setState({ selectedPreview: what.type });
   },
 
   gotoUsersImages: function(e, user_id) {
@@ -355,18 +352,6 @@ export default createReactClass({
       <div className="preview-options">
         <ImageFilterIcon /> Display as
         <div className="actions">
-          <button
-            className={
-              "preview-thumbnail " +
-              (sp === "thumbnail" ? "button--active" : "")
-            }
-            type="button"
-            onClick={this.onPreviewSelect.bind(null, {
-              type: "thumbnail"
-            })}
-          >
-            <span>Thumbnail</span>
-          </button>
           {this.props.data.properties.tms ? (
             <button
               className={
@@ -380,6 +365,18 @@ export default createReactClass({
               <span>TMS</span>
             </button>
           ) : null}
+          <button
+            className={
+              "preview-thumbnail " +
+              (sp === "thumbnail" ? "button--active" : "")
+            }
+            type="button"
+            onClick={this.onPreviewSelect.bind(null, {
+              type: "thumbnail"
+            })}
+          >
+            <span>Thumbnail</span>
+          </button>
         </div>
       </div>
     );
@@ -496,23 +493,25 @@ export default createReactClass({
             ) : null}
           </div>
         </div>
-        <footer className="pane-footer">
+        <footer className="single-footer">
           <div className="single-pager">
             <a
               onClick={this.prevResult}
-              className={this.props.pagination.prevId ? "" : "disabled"}
+              className={this.props.pagination.prevId ? "previous" : "disabled"}
               title="View previous result"
             >
               <ChevronLeftIcon />
+              Previous
             </a>
             <span className="pane-subtitle">
               {pagination.current} of {pagination.total} results
             </span>
             <a
               onClick={this.nextResult}
-              className={this.props.pagination.nextId ? "" : "disabled"}
+              className={this.props.pagination.nextId ? "next" : "disabled"}
               title="View next result"
             >
+              Next
               <ChevronRightIcon />
             </a>
           </div>
