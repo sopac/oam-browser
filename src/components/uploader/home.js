@@ -278,7 +278,7 @@ export default createReactClass({
                   const name = randomizeName(o.file.name);
                   files.push({ newName: name, data: o.file });
                   urls.unshift(
-                    "https://s3.amazonaws.com/" +
+                    "https://s3-ap-southeast-2.amazonaws.com/" +
                       config.uploadBucket +
                       "/" +
                       name
@@ -475,17 +475,12 @@ export default createReactClass({
 
               <div className="form-note">
                 <p>
-                  By submitting imagery to OpenAerialMap, you agree to place
-                  your imagery into the{" "}
-                  <a href="https://github.com/openimagerynetwork/oin-register#open-imagery-network">
-                    Open Imagery Network (OIN)
-                  </a>
-                  . All imagery contained in OIN is licensed{" "}
+                  By submitting imagery to PacDID, you agree to place
+        your imagery into the Pacific Community (SPC) data repository.
+                  All imagery contained in PacDID is licensed{" "}
                   <a href="https://creativecommons.org/licenses/by/4.0/">
                     CC-BY 4.0
-                  </a>
-                  , with attribution as contributors of Open Imagery Network.
-                  All imagery is available to be traced in OpenStreetMap.
+                  </a>., with the understanding that all imagery will be made available to be traced in OpenStreetMap.
                 </p>
               </div>
 

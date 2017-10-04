@@ -138,7 +138,16 @@ export default createReactClass({
               </ul>
             ) : null}
             <ul className="drop__menu info-menu" role="menu">
-              <li>
+            <li>
+                <a
+                  className="drop__menu-item"
+                  href="/coordination"
+                  title="Coordination App"
+                  data-hook="dropdown:close">
+                  <span>Coordination Service</span>
+                </a>
+              </li>           
+	      <li>
                 <a
                   className="drop__menu-item"
                   href="http://openaerialmap.org/about"
@@ -173,7 +182,7 @@ export default createReactClass({
                   href="mailto:info@openaerialmap.org"
                   title="Get in touch"
                 >
-                  <span>Contact</span> <small>info@openaerialmap.org</small>
+                  <span>Contact</span> <small>ict4dev@spc.int</small>
                 </a>
               </li>
             </ul>

@@ -17,10 +17,9 @@ export default class ResultsList extends React.Component {
   homeBlurb() {
     return (
       <div>
-        <p>
-          OpenAerialMap PacDID is a set of tools for searching, sharing, and
+        <p>Pacific Drone Imagery Dashboard - <strong>PacDID</strong> - is a set of tools for searching, sharing, and
           using openly licensed satellite and unmanned aerial vehicle (UAV)
-          imagery for the Pacific Islands. Access global imagery at 
+        imagery for the Pacific Islands. PacDID is based on OpenAerialMap, and global imagery can be accessed at 
           <a href="https://openaerialmap.org/"> openaerialmap.org.</a>
         </p>
         <h2>Latest uploads</h2>

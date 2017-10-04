@@ -51,6 +51,7 @@
     "mapbox.js": "^2.4.0",
     "mdi-react": "^2.0.46",
     "moment": "^2.10.6",
+    "node-sass": "^4.5.3",
     "nprogress": "^0.2.0",
     "pretty-bytes": "^2.0.1",
     "rbush": "^1.4.1",
